@@ -1470,11 +1470,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jhdvbshdjb\\Desktop\\Fuckulty\\modern\\BattleShipGame\\BattleShipGame2.csproj",
+      "projectUniqueName": "C:\\Users\\jhdvbshdjb\\Desktop\\Fuckulty\\modern\\BattleShip\\BattleShipGame2.csproj",
       "projectName": "BattleShipGame2",
-      "projectPath": "C:\\Users\\jhdvbshdjb\\Desktop\\Fuckulty\\modern\\BattleShipGame\\BattleShipGame2.csproj",
+      "projectPath": "C:\\Users\\jhdvbshdjb\\Desktop\\Fuckulty\\modern\\BattleShip\\BattleShipGame2.csproj",
       "packagesPath": "C:\\Users\\jhdvbshdjb\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jhdvbshdjb\\Desktop\\Fuckulty\\modern\\BattleShipGame\\obj\\",
+      "outputPath": "C:\\Users\\jhdvbshdjb\\Desktop\\Fuckulty\\modern\\BattleShip\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jhdvbshdjb\\AppData\\Roaming\\NuGet\\NuGet.Config",

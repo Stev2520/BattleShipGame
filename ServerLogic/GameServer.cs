@@ -153,7 +153,7 @@ public class GameServer
                 await HandleChatMessageAsync(player, message.Data);
                 break;
             case NetworkProtocol.Commands.ListReq:
-                await HandleList(player);
+                await HandleList(player.Id);
                 break;
             // Добавьте другие типы сообщений по мере необходимости
             default:
@@ -194,15 +194,15 @@ public class GameServer
         });
     }
     
-    private async Task HandleList(PlayerConnection player)
+    private async Task HandleList(string playerID)
     {
         Dictionary<string, string> message = new Dictionary<string, string>();
         foreach (string id in _players.Keys)
         {
-            if (id == player.Id) continue;
-            message.Add(id, player.Name);
+            if (id == playerID) continue;
+            message.Add(id, _players[playerID].Name);
         }
-        await SendServerMessageAsync(player, new ServerMessage
+        await SendServerMessageAsync(_players[playerID], new ServerMessage
         {
             Type = NetworkProtocol.Commands.ListRes, 
             Data = message
