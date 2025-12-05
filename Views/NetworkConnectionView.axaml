@@ -1,0 +1,46 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:BattleShipGame2.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="BattleShipGame2.Views.NetworkConnectionView"
+             x:DataType="vm:NetworkConnectionViewModel">
+
+    <StackPanel VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Spacing="15"
+                Margin="20">
+        
+        <TextBlock Text="Введите данные сервера"
+                   Classes="Subtitle"/>
+        
+        <TextBox Watermark="Ваш ник"
+                 Text="{Binding PlayerName}"
+                 Width="350"/>
+        
+        <TextBox Watermark="IP-адрес сервера"
+                 Text="{Binding ServerAddress}"
+                 Width="350"/>
+        
+        <TextBox Watermark="Порт (8889)"
+                 Text="{Binding ServerPort}"
+                 Width="350"/>
+        
+        <TextBlock Text="{Binding ErrorMessage}"
+                   Foreground="Red"
+                   IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                   Margin="0,5,0,0"/>
+        
+        <Button Content="Подключиться"
+                Classes="GameButton"
+                Command="{Binding ConnectCommand}"
+                Width="350"/>
+        
+        <Button Content="Назад"
+                Classes="SubButton"
+                Command="{Binding BackCommand}"
+                Width="350"/>
+    </StackPanel>
+    
+</UserControl>

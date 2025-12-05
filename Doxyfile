@@ -1,0 +1,60 @@
+﻿# ------------------------------------------------------------
+# Doxyfile — идеально настроен под твой проект "Морской бой"
+# ------------------------------------------------------------
+PROJECT_NAME           = "Морской бой"
+PROJECT_NUMBER         = 1.0.0
+PROJECT_BRIEF          = "Многопользовательская игра на Avalonia UI + собственный сервер"
+
+# Куда складывать документацию (создастся автоматически)
+OUTPUT_DIRECTORY       = docs
+
+# Что документировать (все папки с исходниками)
+INPUT                  = "G:/BattleShipGame.zip-20251115T124743Z-1-001/BattleShipGame/BattleShipGame/Models" \
+                         "G:/BattleShipGame.zip-20251115T124743Z-1-001/BattleShipGame/BattleShipGame/Networking" \
+                         "G:/BattleShipGame.zip-20251115T124743Z-1-001/BattleShipGame/BattleShipGame/Views" \
+                         "G:/BattleShipGame.zip-20251115T124743Z-1-001/BattleShipGame/BattleShipGame/ViewModels" \
+                         "G:/BattleShipGame.zip-20251115T124743Z-1-001/BattleShipGame/BattleShipGame/ServerLogic"
+
+# Разрешить рекурсивный обход подпапок
+RECURSIVE              = YES
+
+# Какие файлы брать
+FILE_PATTERNS          = *.cs *.axaml *.md
+
+# Генерация
+GENERATE_HTML          = YES
+GENERATE_XML           = YES
+GENERATE_LATEX         = NO
+
+HTML_OUTPUT            = html
+XML_OUTPUT             = xml
+
+# Включаем всё, даже private/internal (удобно при разработке)
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL          = YES
+
+# Красивые диаграммы классов (Graphviz)
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = svg
+DOT_TRANSPARENT        = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+INTERACTIVE_SVG        = YES
+
+# Поддержка русского языка и красивый вид
+JAVADOC_AUTOBRIEF      = YES
+OPTIMIZE_OUTPUT_FOR_C  = NO
+TAB_SIZE               = 4
+ALIASES               += "ru{1}=<div lang=\"ru\">\1</div>"
+
+# Темы (самые красивые из коробки)
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+HTML_EXTRA_STYLESHEET  = 
+HTML_COLORSTYLE        = LIGHT   # или DARK — поменяй как нравится
+
+# Чтобы README.md попал на главную страницу
+USE_MDFILE_AS_MAINPAGE = README.md

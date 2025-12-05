@@ -1,0 +1,56 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:BattleShipGame2.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="BattleShipGame2.Views.ShipPlacementView"
+             x:DataType="vm:ShipPlacementViewModel">
+
+    <StackPanel Margin="20"
+                HorizontalAlignment="Center">
+        
+        <!-- Заголовок -->
+        <Border Classes="Panel"
+                Margin="0,0,0,20">
+            <TextBlock Text="{Binding StatusText}"
+                       Classes="Status"/>
+        </Border>
+        
+        <!-- Инструкция -->
+        <TextBlock Classes="Instruction"
+                   Margin="0,0,0,20">
+            <Run Text="Размещаем корабль размером "/>
+            <Run Text="{Binding CurrentShipSize}"/>
+            <Run Text=" клеток"/>
+            <LineBreak/>
+            <Run Text="Пробел - повернуть, ЛКМ - разместить"/>
+        </TextBlock>
+        
+        <!-- Canvas для расстановки (создается в code-behind) -->
+        <Canvas x:Name="PlacementCanvas"
+                Classes="GameBoard"
+                Margin="0,0,0,20"
+                Tag="{Binding PlacementBoardVersion}"/>
+        
+        <!-- Кнопки управления -->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="20">
+            
+            <Button Content="🔄 Повернуть (Пробел)"
+                    Classes="GameButton RotateButton"
+                    Command="{Binding RotateShipCommand}"/>
+            
+            <Button Content="🎲 Случайная расстановка"
+                    Classes="GameButton RandomButton"
+                    Command="{Binding PlaceShipsRandomlyCommand}"/>
+            
+            <Button Content="▶️ Начать игру"
+                    Classes="GameButton StartButton"
+                    Command="{Binding StartGameCommand}"
+                    IsEnabled="{Binding AllShipsPlaced}"/>
+        </StackPanel>
+    </StackPanel>
+    
+</UserControl>

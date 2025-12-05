@@ -1,0 +1,36 @@
+﻿<!-- ========================================== -->
+<!-- ОКНО ОКОНЧАНИЯ ИГРЫ -->
+<!-- ========================================== -->
+<Window 
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Class="BattleShipGame2.Views.GameOverWindow"
+        Title="Игра окончена"
+        Width="450"
+        Height="250"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        IsVisible="False"
+        Classes="DialogWindow">
+    
+    <StackPanel Classes="DialogPanel">
+        <TextBlock Name="GameOverResultText"
+                   Classes="GameOverTitle"/>
+        
+        <TextBlock Name="GameOverWinnerText"
+                   Classes="WinnerText"/>
+        
+        <StackPanel Classes="DialogButtons">
+            <Button Name="GameOverNewGameButton"
+                    Content="🔄 Новая игра"
+                    Classes="DialogButton"/>
+            
+            <Button Name="GameOverMenuButton"
+                    Content="🏠 В меню"
+                    Classes="DialogButton"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -1,20 +1,165 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:BattleShipGame2.ViewModels"
+        xmlns:views="using:BattleShipGame2.Views"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
         x:Class="BattleShipGame2.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="BattleShipGame2">
+        Title="⚓️ Морской бой"
+        Width="1000"
+        Height="700">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <!-- Основной контейнер с фоном -->
+    <Grid>
+        <!-- Фоновое изображение -->
+        <Image Source="/Assets/ShipWar.jpg" 
+               Stretch="UniformToFill" 
+               Opacity="0.6"/>
+
+        <!-- ========================================== -->
+        <!-- ЭКРАН ЗАГРУЗКИ -->
+        <!-- ========================================== -->
+        <Grid Name="LoadingScreen" Classes="LoadingScreen" IsVisible="False">
+            <Border Classes="LoadingPanel">
+                <StackPanel Classes="LoadingContent">
+                    <TextBlock Text="⚓️ МОРСКОЙ БОЙ ⚓️" Classes="LoadingTitle"/>
+                    <TextBlock Text="Game by F.A.S.T DEVELOPMENT" Classes="LoadingSubtitle"/>
+                    <TextBlock Name="LoadingStatusText" 
+                               Text="Инициализация..."
+                               Classes="LoadingStatus"/>
+                    
+                    <!-- Прогресс-бар -->
+                    <Border Classes="ProgressBarContainer">
+                        <Border Name="LoadingProgressBar" 
+                                Width="0" 
+                                Classes="ProgressBarFill"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- ========================================== -->
+        <!-- ГЛАВНОЕ МЕНЮ -->
+        <!-- ========================================== -->
+        <StackPanel Name="MainMenuScreen" Classes="MenuPanel" IsVisible="False">
+            <TextBlock Text="⚓️ МОРСКОЙ БОЙ ⚓️" Classes="Title"/>
+            
+            <Button Name="VsComputerButton" 
+                    Content="🤖 Играть против компьютера" 
+                    Classes="MenuButton"/>
+            
+            <Button Name="VsPlayerButton" 
+                    Content="👥 Играть вдвоём" 
+                    Classes="MenuButton"/>
+            
+            <Button Name="VsOnlineButton" 
+                    Content="🌐 Играть онлайн" 
+                    Classes="MenuButton"/>
+            
+            <TextBlock Text="Game created by F.A.S.T DEVELOPMENT" Classes="Subtitle"/>
+        </StackPanel>
+
+        <!-- ========================================== -->
+        <!-- ЭКРАН РАССТАНОВКИ КОРАБЛЕЙ -->
+        <!-- ========================================== -->
+        <StackPanel Name="PlacementScreen" Classes="PlacementPanel" IsVisible="False">
+            <!-- Заголовок -->
+            <Border Classes="Panel" Margin="0,0,0,20">
+                <TextBlock Name="PlacementStatusText" 
+                           Text="🚢 Расставьте корабли" 
+                           Classes="Status"/>
+            </Border>
+
+            <!-- Инструкции -->
+            <TextBlock Name="PlacementInstructionText"
+                       Text="Размещаем корабль размером X клеток&#x0a;Пробел - повернуть, ЛКМ - разместить"
+                       Classes="Instruction"
+                       Margin="0,0,0,20"/>
+
+            <!-- Canvas для расстановки -->
+            <Canvas Name="PlacementCanvas" Classes="GameBoard"/>
+
+            <!-- Кнопки управления -->
+            <StackPanel Classes="PlacementButtons">
+                <Button Name="RotateShipButton"
+                        Content="🔄 Повернуть (Пробел)"
+                        Classes="GameButton RotateButton"/>
+                
+                <Button Name="RandomPlacementButton"
+                        Content="🎲 Случайная расстановка"
+                        Classes="GameButton RandomButton"/>
+                
+                <Button Name="StartGameButton"
+                        Content="▶️ Начать игру"
+                        Classes="GameButton StartButton"
+                        IsEnabled="False"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- ========================================== -->
+        <!-- ИГРОВОЙ ЭКРАН -->
+        <!-- ========================================== -->
+        <StackPanel Name="GameScreen" Classes="GameMainPanel" IsVisible="False">
+            <!-- Статус игры -->
+            <Border Classes="Panel" Margin="0,0,0,20">
+                <TextBlock Name="GameStatusText" 
+                           Text="⚔️ ВАШ ХОД! Атакуйте поле противника" 
+                           Classes="Status"/>
+            </Border>
+
+            <!-- Контент: доски + чат -->
+            <StackPanel Classes="GameContentPanel">
+                <!-- Панель досок -->
+                <StackPanel Classes="BoardsPanel">
+                    <!-- Своя доска -->
+                    <StackPanel Classes="BoardPanel">
+                        <Border Classes="BoardHeader Player">
+                            <TextBlock Name="OwnBoardTitle" 
+                                       Text="🛡️ ВАШЕ ПОЛЕ" 
+                                       Classes="BoardLabel"/>
+                        </Border>
+                        <Canvas Name="OwnCanvas" Classes="GameBoard"/>
+                        <TextBlock Name="PlayerStatsText" 
+                                   Text="🎯 Ваши выстрелы: 0 попаданий, 0 промахов" 
+                                   Classes="Stats"/>
+                    </StackPanel>
+
+                    <!-- Доска противника -->
+                    <StackPanel Classes="BoardPanel">
+                        <Border Classes="BoardHeader Enemy">
+                            <TextBlock Name="EnemyBoardTitle" 
+                                       Text="🎯 ПОЛЕ ПРОТИВНИКА" 
+                                       Classes="BoardLabel"/>
+                        </Border>
+                        <Canvas Name="EnemyCanvas" Classes="GameBoard"/>
+                        <TextBlock Name="OpponentStatsText" 
+                                   Text="💣 Выстрелы противника: 0 попаданий, 0 промахов" 
+                                   Classes="Stats"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Чат (для сетевой игры) -->
+                <ContentControl Name="ChatContainer"/>
+            </StackPanel>
+
+            <!-- Кнопки управления -->
+            <StackPanel Classes="GameButtons">
+                <Button Name="NewGameButton"
+                        Content="🔄 НОВАЯ ИГРА"
+                        Classes="GameButton ResetButton"/>
+                
+                <Button Name="ToMenuButton"
+                        Content="🏠 В МЕНЮ"
+                        Classes="GameButton MenuExitButton"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
 
 </Window>

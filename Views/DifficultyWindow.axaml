@@ -1,0 +1,33 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="BattleShipGame2.Views.DifficultyWindow"
+        Title="Выбор сложности"
+        Width="400"
+        Height="500"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        Classes="DialogWindow">
+    
+    <StackPanel Classes="DialogPanel">
+        <TextBlock Text="Выберите сложность бота" Classes="DifficultyTitle"/>
+        
+        <Button Name="EasyDifficultyButton" 
+                Content="Лёгкий (рандом)" 
+                Classes="DifficultyButton DifficultyEasy"/>
+        
+        <Button Name="MediumDifficultyButton" 
+                Content="Средний (умнее)" 
+                Classes="DifficultyButton DifficultyMedium"/>
+        
+        <Button Name="HardDifficultyButton" 
+                Content="Сложный (ИИ)" 
+                Classes="DifficultyButton DifficultyHard"/>
+    </StackPanel>
+</Window>
+
+<!-- ========================================== -->
+<!-- ОКНО ВЫБОРА СЛОЖНОСТИ -->
+<!-- ========================================== -->

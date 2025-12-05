@@ -1,0 +1,31 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="320" d:DesignHeight="500"
+             x:Class="BattleShipGame2.Views.ChatControl">
+    
+    <StackPanel Classes="ChatContainer">
+        <!-- Заголовок чата -->
+        <Border Classes="BoardHeader Player">
+            <TextBlock Text="💬 ЧАТ" Classes="BoardLabel"/>
+        </Border>
+        
+        <!-- Область сообщений -->
+        <ScrollViewer Name="ChatScrollViewer" Classes="ChatScroll">
+            <StackPanel Name="ChatMessagesPanel" Classes="ChatMessages"/>
+        </ScrollViewer>
+        
+        <!-- Поле ввода -->
+        <TextBox Name="ChatInputBox" 
+                 Classes="ChatInput"
+                 KeyDown="OnChatInputKeyDown"/>
+        
+        <!-- Кнопка отправки -->
+        <Button Name="SendButton"
+                Content="📤 Отправить"
+                Classes="GameButton ChatSendButton"
+                Click="OnSendButtonClick"/>
+    </StackPanel>
+    
+</UserControl>
