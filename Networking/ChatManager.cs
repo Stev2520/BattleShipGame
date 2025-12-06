@@ -56,13 +56,9 @@ public class ChatManager
 
         Console.WriteLine($"[Chat] {sender}: {text}");
         if (MessageAdded == null)
-        {
             Console.WriteLine($"[ChatManager] WARNING: MessageAdded event has no subscribers!");
-        }
         else
-        {
             Console.WriteLine($"[ChatManager] MessageAdded event has subscribers, invoking...");
-        }
         AddMessage(sender, text, DateTime.Now);
     }
     
@@ -93,7 +89,6 @@ public class ChatManager
     {
         _chatControl?.Clear();
     }
-    
     
     
     #endregion

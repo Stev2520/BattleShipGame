@@ -100,9 +100,7 @@ public class GameServer
                 Console.WriteLine($"[SERVER] Получено от {player.Name ?? player.Id}: {line}");
                 var msg = ParseMessage(line);
                 if (msg != null)
-                {
                     await ProcessMessageAsync(player, msg);
-                }
             }
         }
         catch (Exception ex)
@@ -676,14 +674,12 @@ public class GameServer
         {
             var opponent = room.GetOpponent(player);
             if (opponent != null)
-            {
                 // Уведомляем соперника
                 await SendServerMessageAsync(opponent, new ServerMessage
                 {
                     Type = NetworkProtocol.Commands.OpponentLeft,
                     Data = { { NetworkProtocol.Keys.Message, $"{player.Name} покинул игру" } }
                 });
-            }
         
             // Удаляем комнату
             _rooms.TryRemove(room.Id, out _);
@@ -699,15 +695,10 @@ public class GameServer
     private async Task HandlePlayerDisconnect(PlayerConnection player)
     {
         var room = _rooms.Values.FirstOrDefault(r => r.Player1.Id == player.Id || r.Player2.Id == player.Id);
-        if (room != null)
-        {
-            var opponent = room.GetOpponent(player);
-            if (opponent != null)
-            {
-                await SendServerMessageAsync(opponent, new ServerMessage { Type = NetworkProtocol.Commands.OpponentDisconnected });
-            }
-            _rooms.TryRemove(room.Id, out _);
-        }
+        var opponent = room?.GetOpponent(player);
+        if (opponent != null)
+            await SendServerMessageAsync(opponent, new ServerMessage { Type = NetworkProtocol.Commands.OpponentDisconnected });
+        _rooms.TryRemove(room.Id, out _);
     }
     
     #endregion

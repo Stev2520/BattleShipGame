@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TestAvalonia.Models;
+using BattleShipGame2.Models;
 
 namespace TestAvalonia.Views;
 
@@ -430,9 +430,7 @@ public partial class MainWindow : Window
             {
                 var border = FindCellBorder(px, py);
                 if (border != null && placingBoard.Grid[px, py] != CellState.Ship)
-                {
                     border.Background = new SolidColorBrush(color);
-                }
             }
         }
     }

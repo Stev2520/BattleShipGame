@@ -171,9 +171,7 @@ public class GameBoard
                 if (ship.IsSunk)
                 {
                     foreach (var pos in ship.Positions)
-                    {
                         Grid[pos.X, pos.Y] = CellState.Sunk;
-                    }
                     BlockAroundShip(ship);
 
                     bool gameOver = Ships.All(s => s.IsSunk);

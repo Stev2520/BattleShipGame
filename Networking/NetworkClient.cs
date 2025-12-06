@@ -118,9 +118,7 @@ public class NetworkClient
             {
                 var msg = ParseMessage(line);
                 if (msg != null)
-                {
                     OnMessageReceived?.Invoke(msg);
-                }
             }
         }
         catch (IOException ex) when (!_connected)

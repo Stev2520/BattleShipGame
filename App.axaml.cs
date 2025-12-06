@@ -108,7 +108,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using BattleShipGame2.ViewModels;
 using BattleShipGame2.Views;
 using BattleShipGame2.ServerLogic;
 using Avalonia.Controls;
@@ -133,10 +132,7 @@ public partial class App : Application
         {
             desktop.ShutdownRequested += OnShutdownRequested;
             DisableAvaloniaDataAnnotationValidation();
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = new MainWindowViewModel(),
-            };
+            desktop.MainWindow = new MainWindow();
             desktop.MainWindow.Icon = new WindowIcon(AssetLoader.Open(new Uri("avares://BattleShipGame2/Assets/BattleShipGame.ico")));
         }
         base.OnFrameworkInitializationCompleted();

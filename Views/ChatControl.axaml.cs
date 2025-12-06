@@ -25,13 +25,9 @@ public partial class ChatControl : UserControl
         // Убедимся, что элементы найдены
         var messagesPanel = this.FindControl<StackPanel>("ChatMessagesPanel");
         if (messagesPanel == null)
-        {
             Console.WriteLine("[ChatControl] WARNING: ChatMessagesPanel not found during initialization!");
-        }
         else
-        {
             Console.WriteLine("[ChatControl] ChatMessagesPanel found successfully");
-        }
     }
 
     /// <summary>
@@ -40,10 +36,8 @@ public partial class ChatControl : UserControl
     public void SetChatManager(ChatManager chatManager)
     {
         _chatManager = chatManager;
-        if (_chatManager != null)
-        {
-            _chatManager.MessageAdded += OnMessageAdded;
-        }
+        if (_chatManager == null) return;
+        _chatManager.MessageAdded += OnMessageAdded;
     }
 
     /// <summary>
